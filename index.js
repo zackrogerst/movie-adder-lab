@@ -1,4 +1,6 @@
 
+let message = document.querySelector("#message");
+
 function addMovie(event) {
     event.preventDefault();
     let inputField = document.querySelector("input");
@@ -15,8 +17,19 @@ function addMovie(event) {
     inputField.value = "";
 }
 
-const deleteMovie = event => event.target.parentNode.remove()
+const deleteMovie = event => {
+    event.target.parentNode.remove();
+    message.textContent = "Movie Deleted!";
+}
 
-const crossOffMovie = event => event.target.classList.toggle("checked");
+const crossOffMovie = event => {
+    event.target.classList.toggle("checked");
+    if (event.target.classList.contains("checked")) {
+        message.textContent = "Movie Watched!";
+    } else {
+        message.textContent = "Movie Added Back";
+    }
+}
 
 document.querySelector("form").addEventListener("submit", addMovie);
+
